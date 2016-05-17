@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offline</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/fe-shared-components.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/fe-shared-components2.css">
+</head>
+<body>
+<div class="fe-live-agent-offline">
+    <div class="utk-l-wrapper-brand">
+        <!-- logo -->
+    </div>
+    <form name="offlineForm" novalidate
+          action="{{ url }}"
+          method="post"
+          ng-class="{'fe-live-agent-hide': isFinal}"
+          ng-submit="validate($event, offlineForm)">
+
+        <input type=hidden name="orgid" value="{{ constants.orgId }}">
+        <input type=hidden name="retURL" value="{{ retUrl }}">
+        <input type="hidden" name="status" value="Open" />
+        <input type="hidden" name="recordType" value="{{ constants.recordType }}" />
+        <input type="hidden" name="origin" value="Offline Wholesale Chat" />
+
+        <h2>Live Chat (Offline)</h2>
+        <p>
+            Sorry, there are no representatives currently available.
+            Email us and we will get back to you during regular business hours.
+            If applicable, please include an address or property ID.
+        </p>
+        <!-- Name -->
+        <div class="utk-form-fields-container">
+            <label class="utk-label"
+                   ng-class="{'utk-is-error': offlineForm.name.$invalid && offlineForm.$submitted}">Full Name</label>
+            <input type="text" name="name"
+                   class="utk-input utk-is-small"
+                   ng-class="{'utk-is-error': offlineForm.name.$invalid && offlineForm.$submitted}"
+                   ng-model="tmp.name"
+                   ng-required="true"/>
+        </div>
+        <!-- Email  -->
+        <div class="utk-form-fields-container">
+            <label class="utk-label"
+                   ng-class="{'utk-is-error': offlineForm.email.$invalid && offlineForm.$submitted}">Email Address</label>
+            <input type="text" name="email"
+                   fe-valid-email
+                   class="utk-input utk-is-small"
+                   ng-class="{'utk-is-error': offlineForm.email.$invalid && offlineForm.$submitted}"
+                   ng-model="tmp.email"
+                   ng-required="true"/>
+        </div>
+        <!-- Phone -->
+        <div class="utk-form-fields-container">
+            <label class="utk-label"
+                   ng-class="{'utk-is-error': offlineForm.tmpPhone.$invalid && offlineForm.$submitted}">Phone Number</label>
+            <input type="text" name="tmpPhone"
+                   class="utk-input utk-is-small"
+                   ng-class="{'utk-is-error': offlineForm.tmpPhone.$invalid && offlineForm.$submitted}"
+                   ng-model="tmp.phone"/>
+            <input type="hidden" name="phone" ng-value="tmp.phone || 'null'" />
+        </div>
+        <!-- Subject -->
+        <div class="utk-form-fields-container">
+            <label class="utk-label"
+                   ng-class="{'utk-is-error': offlineForm.subject.$invalid && offlineForm.$submitted}">Your Question</label>
+            <textarea name="subject" rows="5"
+                      class="utk-input utk-is-small"
+                      ng-class="{'utk-is-error': offlineForm.subject.$invalid && offlineForm.$submitted}"
+                      ng-model="tmp.subject"
+                      ng-required="true"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="utk-form-fields-container fe-live-agent-start-buttons">
+            <input type="submit" value="Email Us"
+                   class="utk-button-primary utk-is-small"/>
+        </div>
+    </form>
+
+    <div class="fe-live-agent-confirmation" ng-if="isFinal">
+        <h2>Thank you for reaching out!</h2>
+        <p>
+            We have received your email and a representative will
+            get back to you during regular business hours.
+        </p>
+        <p>
+            Auction.com
+        </p>
+        <br/>
+        <!-- Buttons -->
+        <div class="utk-form-fields-container fe-live-agent-start-buttons">
+            <button class="utk-button-primary utk-is-small"
+                    ng-click="close()">Close</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://c.la4-c1cs-chi.salesforceliveagent.com/content/g/js/36.0/deployment.js"></script>
+    <script>
+        var config = {
+            clientId: '57340000000blKv',
+            scriptUrl: 'https://c.la4-c1cs-chi.salesforceliveagent.com/content/g/js/36.0/deployment.js',
+            initUrl: 'https://d.la4-c1cs-chi.salesforceliveagent.com/chat',
+            offlineUrl: 'offline.html',
+            offlineChatUrl: 'https://cs42.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8',
+            buttonId: '57240000000blKR',
+            orgId: '00D56000000Cqoe',
+            recordType: '012400000005hnw'
+        };
+        window._laq = window._laq || [function () {
+                    liveagent.showWhenOnline(config.clientId, document.getElementById('btnOnlineChat'));
+                    liveagent.showWhenOffline(config.clientId, document.getElementById('btnOfflineChat'));
+                }];
+
+        liveagent.init(config.initUrl, config.buttonId, config.orgId);
+
+        function onlineChat() {
+            liveagent.startChat(config.clientId);
+        }
+
+        function offlineChat() {
+            var win = window.open(
+                    config.offlineUrl,
+                    'liveagent',
+                    'width=400,height=500,menubar=no,location=no,resizable=no,status=no'
+            );
+
+            if (win.focus) {
+                win.focus();
+            }
+
+        }
+
+        window.onload = function (e) {
+            document.getElementById('btnOnlineChat')
+                    .addEventListener('click', function () {
+                        onlineChat();
+                    });
+
+            document.getElementById('btnOfflineChat')
+                    .addEventListener('click', function () {
+                        offlineChat();
+                    });
+        };
+
+    </script>
+</head>
+
+<body>
+<button id="btnOfflineChat">Start offline</button>
+<button id="btnOnlineChat">Start online</button>
+</body>
+</html>
