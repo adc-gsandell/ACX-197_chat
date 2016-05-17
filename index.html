@@ -7,13 +7,10 @@
     <script>
         var config = {
             clientId: '57340000000blKv',
-            scriptUrl: 'https://c.la4-c1cs-chi.salesforceliveagent.com/content/g/js/36.0/deployment.js',
             initUrl: 'https://d.la4-c1cs-chi.salesforceliveagent.com/chat',
-            offlineUrl: 'offline.html',
-            offlineChatUrl: 'https://cs42.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8',
+            offlineUrl: 'http://auction.com/liveagent/offline',  // TAKE OUT the 'http://auction.com' for production
             buttonId: '57240000000blKR',
-            orgId: '00D56000000Cqoe',
-            recordType: '012400000005hnw'
+            orgId: '00D56000000Cqoe'
         };
         window._laq = window._laq || [function () {
                     liveagent.showWhenOnline(config.clientId, document.getElementById('btnOnlineChat'));
